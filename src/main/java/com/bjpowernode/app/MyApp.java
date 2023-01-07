@@ -42,6 +42,7 @@ public class MyApp extends Application{
         assert resource != null;
         Parent parent = FXMLLoader.load(resource);
 
+
         //配置场景
         Scene scene = new Scene(parent,600,400);
         primaryStage.setScene(scene);
