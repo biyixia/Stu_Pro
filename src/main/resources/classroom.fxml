@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bjpowernode.controller.ClassroomController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="label1" text="教室信息管理" />
+            <TableView fx:id="table" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="Colum1" prefWidth="75.0" text="班级编号" />
+                <TableColumn fx:id="Colum2" prefWidth="75.0" text="班级名称" />
+              </columns>
+            </TableView>
+            <HBox spacing="50.0">
+               <children>
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" text="添加" />
+                  <Button fx:id="btnDel" mnemonicParsing="false" onAction="#del" text="删除" />
+                  <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#update" text="修改" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

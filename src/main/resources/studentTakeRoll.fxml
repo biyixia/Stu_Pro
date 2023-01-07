@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bjpowernode.controller.StudentTakeRollController">
+   <center>
+      <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="sName" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="247.0" text="学生姓名" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
