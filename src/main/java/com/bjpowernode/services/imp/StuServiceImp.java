@@ -73,8 +73,15 @@ public class StuServiceImp implements StuService {
         return integers.peekFirst();
     }
 
+
+
     @Override
     public boolean isClassStu(Classroom classroom) {
         return cName.contains(classroom.getName());
+    }
+
+    @Override
+    public ArrayList<String> getCName() {
+        return cName;
     }
 }

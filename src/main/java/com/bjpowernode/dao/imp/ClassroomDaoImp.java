@@ -32,8 +32,7 @@ public class ClassroomDaoImp implements ClassroomDao {
         while (iterator.hasNext()) {
             Classroom next = iterator.next();
             if (next.getId() == classroom.getId()) {
-                int index = DB.classrooms.indexOf(next);
-                DB.classrooms.set(index,classroom);
+                next.setName(classroom.getName());
                 return true;
             }
         }

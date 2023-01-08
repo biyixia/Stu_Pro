@@ -35,7 +35,6 @@ public class Classroom {
 
     @Override
     public String toString() {
-        return "班级编号：" + id +
-                "   班级名称：" + name;
+        return name;
     }
 }

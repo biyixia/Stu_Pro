@@ -2,6 +2,7 @@ package com.bjpowernode.controller;
 
 import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.beans.Stu;
+import com.bjpowernode.dao.DB;
 import com.bjpowernode.services.ClassroomService;
 import com.bjpowernode.services.StuService;
 import com.bjpowernode.services.imp.ClassroomServiceImp;
@@ -44,7 +45,7 @@ public class StudentController implements Initializable {
     private TableColumn<Stu, Integer> Colum5;
 
     @FXML
-    private TableColumn<Stu, String> Colum6;
+    private TableColumn<Stu, Classroom> Colum6;
 
     @FXML
     private TextField count;
@@ -60,7 +61,7 @@ public class StudentController implements Initializable {
         Colum3.setCellValueFactory(new PropertyValueFactory<>("sex"));
         Colum4.setCellValueFactory(new PropertyValueFactory<>("age"));
         Colum5.setCellValueFactory(new PropertyValueFactory<>("score"));
-        Colum6.setCellValueFactory(new PropertyValueFactory<>("cname"));
+        Colum6.setCellValueFactory(new PropertyValueFactory<>("classroom"));
         select();
     }
 

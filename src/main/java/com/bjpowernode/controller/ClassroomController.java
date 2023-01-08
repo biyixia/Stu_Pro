@@ -201,7 +201,7 @@ public class ClassroomController implements Initializable {
 
         //调用业务修改班级信息
         String name1 = cName.getText();
-        if (classroomService.UpdateClassroom(new Classroom(id, name))) {
+        if (classroomService.UpdateClassroom(new Classroom(id, name1))) {
             alert.setAlertType(Alert.AlertType.NONE);
             alert.setHeaderText("班级信息修改成功");
             alert.show();

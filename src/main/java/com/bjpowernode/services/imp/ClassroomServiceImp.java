@@ -4,8 +4,10 @@ import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.dao.ClassroomDao;
 import com.bjpowernode.dao.imp.ClassroomDaoImp;
 import com.bjpowernode.services.ClassroomService;
+import com.bjpowernode.services.StuService;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -19,10 +21,23 @@ public class ClassroomServiceImp implements ClassroomService {
         integers.add(104);
     }
     ClassroomDao classroomDao = new ClassroomDaoImp();
+    StuService stuService = new StuServiceImp();
 
     @Override
     public ArrayList<Classroom> getAllClassroom() {
         return classroomDao.getAllClassroom();
+    }
+
+    @Override
+    public Classroom getIdClassroom(int cid) {
+        ArrayList<Classroom> allClassroom = getAllClassroom();
+        Iterator<Classroom> iterator = allClassroom.iterator();
+        while (iterator.hasNext()) {
+            Classroom classroom = iterator.next();
+            if (classroom.getId() == cid)
+                return classroom;
+        }
+        return null;
     }
 
     @Override
@@ -34,6 +49,15 @@ public class ClassroomServiceImp implements ClassroomService {
 
     @Override
     public boolean UpdateClassroom(Classroom classroom) {
+        Classroom classroom1 = getIdClassroom(classroom.getId());
+        ArrayList<String> cName = stuService.getCName();
+        int count = 0;
+        while (cName.remove(classroom1.getName())) {
+            count++;
+        }
+        for (int i = 0; i < count; i++) {
+            cName.add(classroom.getName());
+        }
         return classroomDao.UpdateClassroom(classroom);
     }
 

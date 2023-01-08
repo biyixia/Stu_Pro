@@ -10,7 +10,6 @@ public class Stu {
     int age;
     int score;
     Classroom classroom;
-    String cname;
 
     public Stu() {
     }
@@ -22,7 +21,6 @@ public class Stu {
         this.age = age;
         this.score = score;
         this.classroom = classroom;
-        this.cname = classroom.name;
     }
 
     public int getId() {
@@ -71,14 +69,6 @@ public class Stu {
 
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
-    }
-
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
     }
 
     @Override

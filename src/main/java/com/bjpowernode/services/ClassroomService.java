@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public interface ClassroomService {
     //获取全部班级
     ArrayList<Classroom> getAllClassroom();
+    //根据id查找班级
+    Classroom getIdClassroom(int cid);
     //添加班级
     boolean AddClassroom(Classroom classroom);
     //修改班级
