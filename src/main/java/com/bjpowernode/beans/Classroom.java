@@ -1,38 +1,20 @@
 package com.bjpowernode.beans;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author dbc
  * @create 2023-01-03 19:28
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Classroom {
     int id;
     String name;
-
-    public Classroom() {
-   }
-
-    public Classroom(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return name;
