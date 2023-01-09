@@ -5,9 +5,8 @@ import com.bjpowernode.dao.DB;
 import com.bjpowernode.dao.StuDao;
 import com.bjpowernode.dao.imp.StuDaoImp;
 import com.bjpowernode.services.StuService;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+
+import java.util.*;
 
 /**
  * @author dbc
@@ -83,5 +82,33 @@ public class StuServiceImp implements StuService {
     @Override
     public ArrayList<String> getCName() {
         return cName;
+    }
+
+    @Override
+    public ArrayList<Stu> call(int num) {
+        ArrayList<Stu> allStu = getAllStu();
+        if (num <= 0 || num > allStu.size()){
+            return null;
+        }
+        HashSet<Stu> stus = new HashSet<>();
+        //开始点名
+        for (int i = 0; i < num; i++) {
+            while (!stus.add(allStu.get(new Random().nextInt(allStu.size()))));
+        }
+        ArrayList<Stu> stus1 = new ArrayList<>(stus);
+        stus1.sort(new Comparator<Stu>() {
+            @Override
+            public int compare(Stu o1, Stu o2) {
+                if (o1.getId() == o2.getId()){
+                    return 0;
+                }else if (o1.getId() > o2.getId()){
+                    return 1;
+                }else {
+                    return -1;
+                }
+            }
+        });
+
+        return stus1;
     }
 }

@@ -4,6 +4,7 @@ import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.beans.Stu;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * @author dbc
@@ -26,4 +27,6 @@ public interface StuService {
     boolean isClassStu(Classroom classroom);
     //获取缓存集合
     ArrayList<String> getCName();
+    //学生点名
+    ArrayList<Stu> call(int num);
 }

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import static com.bjpowernode.dao.DB.stus;
+
 /**
  * @author dbc
  * @create 2023-01-04 11:42
@@ -281,45 +283,29 @@ public class StudentController implements Initializable {
             return;
         }
 
-        //调用业务获取学生信息
-        ArrayList<Stu> allStu = stuService.getAllStu();
-
         int count = Integer.parseInt(this.count.getText());
 
-        if (count <= 0 || count > allStu.size()){
-            alert.setHeaderText("输入点名个数不合法或超出范围");
+        ArrayList<Stu> call = stuService.call(count);
+
+        if (call == null){
+            alert.setHeaderText("点名数不合法或超出范围");
             alert.show();
             return;
         }
 
-        HashSet<Stu> stus = new HashSet<>();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        //开始点名
-        for (int i = 0; i < Integer.parseInt(this.count.getText()); i++) {
-            while (!stus.add(allStu.get(new Random().nextInt(allStu.size()))));
+        for (Stu stu : call) {      //循环中不能加号直接字符串累加
+            stringBuilder.append(stu.getId());
+            stringBuilder.append(":");
+            stringBuilder.append(stu.getName());
+            stringBuilder.append("\n");
         }
 
-        //获取fxml文件
-        URL resource = StudentController.class.getResource("/studentTakeRoll.fxml");
-        assert resource != null;
-        Node node = FXMLLoader.load(resource);
+        String content = "回答问题的学生是：\n"+stringBuilder.toString();
 
-        TableView<Stu> table = (TableView<Stu>) node.lookup("#table");
-        //列绑定
-        table.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        ObservableList<Stu> stus1 = FXCollections.observableArrayList(stus);
-        table.setItems(stus1);
-
-        //创建对话框窗口
-        DialogPane dialogPane = new DialogPane();
-        dialogPane.setGraphic(node);
-        dialogPane.getButtonTypes().setAll(ButtonType.OK);
-
-        //创建对话框架构
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setDialogPane(dialogPane);
-        dialog.setTitle("学生点名");
-        dialog.showAndWait();
+        alert.setAlertType(Alert.AlertType.NONE);
+        alert.setHeaderText(content);
+        alert.show();
     }
 }
