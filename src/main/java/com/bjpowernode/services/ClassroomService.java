@@ -1,6 +1,7 @@
 package com.bjpowernode.services;
 
 import com.bjpowernode.beans.Classroom;
+import com.bjpowernode.exception.MyException;
 
 import java.util.ArrayList;
 
@@ -14,9 +15,9 @@ public interface ClassroomService {
     //根据id查找班级
     Classroom getIdClassroom(int cid);
     //添加班级
-    boolean AddClassroom(Classroom classroom);
+    boolean AddClassroom(Classroom classroom) throws MyException;
     //修改班级
-    boolean UpdateClassroom(Classroom classroom);
+    boolean UpdateClassroom(Classroom classroom) throws MyException;
     boolean DelClassroom(Classroom classroom);
     Integer getIntegers();
 }

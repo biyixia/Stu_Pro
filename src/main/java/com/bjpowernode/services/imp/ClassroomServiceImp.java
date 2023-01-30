@@ -3,6 +3,7 @@ package com.bjpowernode.services.imp;
 import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.dao.ClassroomDao;
 import com.bjpowernode.dao.imp.ClassroomDaoImp;
+import com.bjpowernode.exception.MyException;
 import com.bjpowernode.services.ClassroomService;
 import com.bjpowernode.services.StuService;
 
@@ -41,14 +42,20 @@ public class ClassroomServiceImp implements ClassroomService {
     }
 
     @Override
-    public boolean AddClassroom(Classroom classroom){
+    public boolean AddClassroom(Classroom classroom) throws MyException {
+        if (classroom.getName().length() < 4 || classroom.getName().length() > 10){
+            throw new MyException("班级名称必须为4-10个字符");
+        }
         integers.add(integers.getFirst()+1);
         classroom.setId(integers.pollFirst());
         return classroomDao.AddClassroom(classroom);
     }
 
     @Override
-    public boolean UpdateClassroom(Classroom classroom) {
+    public boolean UpdateClassroom(Classroom classroom) throws MyException {
+        if (classroom.getName().length() < 4 || classroom.getName().length() > 10){
+            throw new MyException("班级名称必须为4-10个字符");
+        }
         Classroom classroom1 = getIdClassroom(classroom.getId());
         ArrayList<String> cName = stuService.getCName();
         int count = 0;

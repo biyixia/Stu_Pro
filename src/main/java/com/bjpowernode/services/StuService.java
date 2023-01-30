@@ -2,6 +2,7 @@ package com.bjpowernode.services;
 
 import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.beans.Stu;
+import com.bjpowernode.exception.MyException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,9 +15,9 @@ public interface StuService {
     //获取全部学生
     ArrayList<Stu> getAllStu();
     //添加学生
-    boolean AddStu(Stu stu);
+    boolean AddStu(Stu stu) throws MyException;
     //修改学生
-    boolean UpdateStu(Stu stu);
+    boolean UpdateStu(Stu stu) throws MyException;
     //删除学生
     boolean DelStu(Stu stu);
     //根据班级编号删除学生

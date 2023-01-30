@@ -3,6 +3,7 @@ import com.bjpowernode.beans.Classroom;
 import com.bjpowernode.beans.Stu;
 import com.bjpowernode.dao.StuDao;
 import com.bjpowernode.dao.imp.StuDaoImp;
+import com.bjpowernode.exception.MyException;
 import com.bjpowernode.services.StuService;
 
 import java.util.*;
@@ -34,7 +35,22 @@ public class StuServiceImp implements StuService {
     }
 
     @Override
-    public boolean AddStu(Stu stu) {
+    public boolean AddStu(Stu stu) throws MyException {
+        if (stu.getSex() == null){
+            throw new MyException("您还没有输入性别！");
+        }
+        if (stu.getClassroom() == null){
+            throw new MyException("您还没有输入班级！");
+        }
+        if (stu.getName().length() < 1 || stu.getName().length() > 10){
+            throw new MyException("学生姓名必须为1-10个字符");
+        }
+        if(stu.getAge() < 0 || stu.getAge() > 100){
+            throw new MyException("您输入的年龄有误");
+        }
+        if (stu.getScore() < 0 || stu.getScore() > 150){
+            throw new MyException("您输入的成绩有误");
+        }
         integers.add(integers.getFirst()+1);
         stu.setId(integers.pollFirst());
         cName.add(stu.getClassroom().getName());
@@ -42,7 +58,16 @@ public class StuServiceImp implements StuService {
     }
 
     @Override
-    public boolean UpdateStu(Stu stu) {
+    public boolean UpdateStu(Stu stu) throws MyException {
+        if (stu.getName().length() < 1 || stu.getName().length() > 10){
+            throw new MyException("学生姓名必须为1-10个字符");
+        }
+        if(stu.getAge() < 0 || stu.getAge() > 100){
+            throw new MyException("您输入的年龄有误");
+        }
+        if (stu.getScore() < 0 || stu.getScore() > 150){
+            throw new MyException("您输入的成绩有误");
+        }
         return stuDao.UpdateStu(stu);
     }
 

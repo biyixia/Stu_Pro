@@ -1,6 +1,7 @@
 package com.bjpowernode.controller;
 
 import com.bjpowernode.beans.Classroom;
+import com.bjpowernode.exception.MyException;
 import com.bjpowernode.services.ClassroomService;
 import com.bjpowernode.services.StuService;
 import com.bjpowernode.services.imp.ClassroomServiceImp;
@@ -90,7 +91,15 @@ public class ClassroomController implements Initializable {
             return;
         }
         String name = cName.getText();
-        classroomService.AddClassroom(new Classroom(id, name));
+
+        try {
+            classroomService.AddClassroom(new Classroom(id, name));
+        } catch (MyException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.YES);
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+            return;
+        }
 
         //刷新表格
         select();
@@ -201,7 +210,17 @@ public class ClassroomController implements Initializable {
 
         //调用业务修改班级信息
         String name1 = cName.getText();
-        if (classroomService.UpdateClassroom(new Classroom(id, name1))) {
+        boolean b = false;
+        try {
+            b = classroomService.UpdateClassroom(new Classroom(id, name1));
+        } catch (MyException e) {
+            alert.setHeaderText(e.getMessage());
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.getButtonTypes().setAll(ButtonType.YES);
+            alert.showAndWait();
+            return;
+        }
+        if (b) {
             alert.setAlertType(Alert.AlertType.NONE);
             alert.setHeaderText("班级信息修改成功");
             alert.show();
